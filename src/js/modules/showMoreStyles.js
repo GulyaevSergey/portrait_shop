@@ -1,4 +1,4 @@
-const showMoreStyles = (trigger, styles) => {
+export const showMoreStyles = (trigger, styles) => {
     const cards = document.querySelectorAll(styles);
     const btn = document.querySelector(trigger);
 
@@ -24,5 +24,3 @@ const showMoreStyles = (trigger, styles) => {
         btn.remove();
     });
 };
-
-export { showMoreStyles };

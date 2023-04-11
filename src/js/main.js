@@ -5,7 +5,7 @@ import {
     checkTextInputs,
     forms,
     showMoreStyles,
-} from "./modules/index";
+} from "./modules";
 
 document.addEventListener("DOMContentLoaded", () => {
     modal();
