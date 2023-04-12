@@ -1,4 +1,4 @@
-import { checkNumInputs } from "./checkNumInputs";
+import { checkNumInputs, postData } from "./index";
 
 const forms = () => {
     const allForms = document.querySelectorAll("form");
@@ -14,17 +14,6 @@ const forms = () => {
         spinner: "src/assets/img/spinner.gif",
         ok: "src/assets/img/ok.png",
         fail: "src/assets/img/fail.png",
-    };
-
-    const postData = async (url, data) => {
-        const res = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
-        return await res.text();
     };
 
     const clearInputs = () => {
