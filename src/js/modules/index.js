@@ -4,3 +4,4 @@ export { mask } from "./mask";
 export { checkTextInputs } from "./checkTextInputs";
 export { forms } from "./forms";
 export { showMoreStyles } from "./showMoreStyles";
+export { calc } from "./calc";

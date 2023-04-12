@@ -5,6 +5,7 @@ import {
     checkTextInputs,
     forms,
     showMoreStyles,
+    calc,
 } from "./modules";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,4 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
     checkTextInputs('[name="name"]');
     checkTextInputs('[name="message"]');
     showMoreStyles(".button-styles", ".styles-2");
+    calc({
+        size: "#size",
+        material: "#material",
+        options: "#options",
+        promocode: ".promocode",
+        result: ".calc-price",
+    });
 });
