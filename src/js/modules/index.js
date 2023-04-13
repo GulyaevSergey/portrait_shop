@@ -7,3 +7,4 @@ export { forms } from "./forms";
 export { showMoreStyles } from "./showMoreStyles";
 export { getResourse, postData } from "../services/requests";
 export { calc } from "./calc";
+export { filter } from "./filter";

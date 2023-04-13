@@ -6,6 +6,7 @@ import {
     forms,
     showMoreStyles,
     calc,
+    filter,
 } from "./modules";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,4 +25,5 @@ document.addEventListener("DOMContentLoaded", () => {
         promocode: ".promocode",
         result: ".calc-price",
     });
+    filter();
 });

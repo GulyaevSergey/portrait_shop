@@ -20,13 +20,10 @@ const calcSum = (size, material, options, promocode, result) => {
             resultBlock.textContent = sum;
         }
     };
-    console.log(sum);
     sizeBlock.addEventListener("change", calcFunc);
     materialBlock.addEventListener("change", calcFunc);
     optionsBlock.addEventListener("change", calcFunc);
     promocodeBlock.addEventListener("input", calcFunc);
-
-    console.log(sum);
 };
 
 const calc = (parametrs) => {
