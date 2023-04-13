@@ -68,6 +68,7 @@ const forms = () => {
                 jsonObject
             )
                 .then((res) => {
+                    console.log(res);
                     statusImg.setAttribute("src", messages.ok);
                     textMessage.textContent = messages.success;
                 })
