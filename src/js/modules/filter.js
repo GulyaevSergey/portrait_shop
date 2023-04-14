@@ -1,4 +1,4 @@
-const filter = () => {
+export const filter = () => {
     const menu = document.querySelector(".portfolio-menu");
     const items = menu.querySelectorAll("li");
     const btnAll = menu.querySelector(".all");
@@ -15,6 +15,16 @@ const filter = () => {
     const markChef = wrapper.querySelectorAll(".chef");
     const markGuy = wrapper.querySelectorAll(".guy");
     const no = document.querySelector(".portfolio-no");
+
+    const categoriesFilter = [
+        { elem: btnAll, type: markAll },
+        { elem: btnLovers, type: markLovers },
+        { elem: btnChef, type: markChef },
+        { elem: btnGirl, type: markGirl },
+        { elem: btnGuy, type: markGuy },
+        { elem: btnGrandmother, type: "" },
+        { elem: btnGranddad, type: "" },
+    ];
 
     const typeFilter = (markType) => {
         markAll.forEach((mark) => {
@@ -35,33 +45,11 @@ const filter = () => {
         }
     };
 
-    btnAll.addEventListener("click", () => {
-        typeFilter(markAll);
-    });
-
-    btnLovers.addEventListener("click", () => {
-        typeFilter(markLovers);
-    });
-
-    btnChef.addEventListener("click", () => {
-        typeFilter(markChef);
-    });
-
-    btnGuy.addEventListener("click", () => {
-        typeFilter(markGuy);
-    });
-
-    btnGirl.addEventListener("click", () => {
-        typeFilter(markGirl);
-    });
-
-    btnGrandmother.addEventListener("click", () => {
-        typeFilter();
-    });
-
-    btnGranddad.addEventListener("click", () => {
-        typeFilter();
-    });
+    categoriesFilter.forEach(({ elem, type }) =>
+        elem.addEventListener("click", () => {
+            typeFilter(type);
+        })
+    );
 
     menu.addEventListener("click", (e) => {
         const target = e.target;
@@ -73,5 +61,3 @@ const filter = () => {
         }
     });
 };
-
-export { filter };
