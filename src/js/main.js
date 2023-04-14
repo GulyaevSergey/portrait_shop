@@ -8,6 +8,7 @@ import {
     calc,
     filter,
     pictureSize,
+    accordion,
 } from "./modules";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -28,4 +29,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     filter();
     pictureSize(".sizes-block");
+    accordion(".accordion-heading", ".accordion-block");
 });
