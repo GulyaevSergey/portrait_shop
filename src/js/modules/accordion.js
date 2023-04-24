@@ -9,10 +9,9 @@ export const accordion = (trigger, content) => {
     btns.forEach((btn) => {
         btn.addEventListener("click", () => {
             if (!btn.classList.contains("active")) {
-                btns.forEach((btn) => {
-                    btn.classList.remove("active", "active-style");
-                });
                 btn.classList.add("active", "active-style");
+            } else {
+                btn.classList.remove("active");
             }
         });
     });
