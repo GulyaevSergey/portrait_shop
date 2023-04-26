@@ -1,13 +1,14 @@
 export const burger = (menuSelector, burgerSelector) => {
     const menuElement = document.querySelector(menuSelector);
     const burgerElement = document.querySelector(burgerSelector);
+    const BREACKPOINT = 993;
 
     menuElement.style.display = "none";
 
     burgerElement.addEventListener("click", () => {
         if (
             menuElement.style.display === "none" &&
-            window.screen.availWidth < 993
+            window.screen.availWidth < BREACKPOINT
         ) {
             menuElement.style.display = "block";
         } else {
@@ -16,7 +17,7 @@ export const burger = (menuSelector, burgerSelector) => {
     });
 
     window.addEventListener("resize", () => {
-        window.screen.availWidth > 992
+        window.screen.availWidth >= BREACKPOINT
             ? (menuElement.style.display = "none")
             : (menuElement.style.display = "block");
     });
