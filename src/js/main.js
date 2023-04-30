@@ -11,6 +11,7 @@ import {
     accordion,
     burger,
     scrolling,
+    drop,
 } from "./modules";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,4 +35,5 @@ document.addEventListener("DOMContentLoaded", () => {
     accordion(".accordion-heading", ".accordion-block");
     burger(".burger-menu", ".burger");
     scrolling(".pageup");
+    drop();
 });
