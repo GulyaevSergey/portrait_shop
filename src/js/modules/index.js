@@ -12,3 +12,4 @@ export { pictureSize } from "./pictureSize";
 export { accordion } from "./accordion";
 export { burger } from "./burger";
 export { scrolling } from "./scrolling";
+export { drop } from "./drop";
