@@ -1,6 +1,6 @@
-export const accordion = (trigger, content) => {
-    const btns = document.querySelectorAll(trigger);
-    const blocks = document.querySelectorAll(content);
+export const accordion = (trigger: string, content: string): void => {
+    const btns: NodeListOf<HTMLParagraphElement> = document.querySelectorAll(trigger);
+    const blocks: NodeListOf<HTMLDivElement> = document.querySelectorAll(content);
 
     blocks.forEach((block) => {
         block.classList.add("animated", "fadeInDown");
