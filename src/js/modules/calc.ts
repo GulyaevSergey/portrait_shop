@@ -4,7 +4,7 @@ const calcSum = (size: string, material: string, options: string, promocode: str
     const optionsBlock: HTMLInputElement  | null = document.querySelector(options);
     const promocodeBlock: HTMLInputElement  | null = document.querySelector(promocode);
     const resultBlock: HTMLInputElement | null = document.querySelector(result);
-
+ 
     let sum = 0;
 
     if(!sizeBlock || !materialBlock || !optionsBlock || !promocodeBlock || !resultBlock){

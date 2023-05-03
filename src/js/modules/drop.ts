@@ -33,11 +33,8 @@ export const drop = (): void => {
 
         if (closest){
             closest.style.border = "none";
-            if (item.closest(".calc_form")) {
-                closest.style.backgroundColor = "#fff";
-            } else {
-                closest.style.backgroundColor = "#ededed";
-            }
+
+            item.closest(".calc_form") ? closest.style.backgroundColor = "#fff" : closest.style.backgroundColor = "#ededed";
         }
     };
 

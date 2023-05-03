@@ -10,20 +10,12 @@ export const burger = (menuSelector: string, burgerSelector: string): void => {
     menuElement.style.display = "none";
 
         burgerElement?.addEventListener("click", () => {
-            if (
-                menuElement.style.display === "none" &&
-                window.screen.availWidth < BREACKPOINT
-            ) {
-                menuElement.style.display = "block";
-            } else {
-                menuElement.style.display = "none"; 
-            }
+            menuElement.style.display = menuElement.style.display === "none" && window.screen.availWidth < BREACKPOINT ? "block" : "none"
+menuElement.style.display = "none";
         });
     
         window.addEventListener("resize", () => {
-            window.screen.availWidth >= BREACKPOINT
-                ? (menuElement.style.display = "none")
-                : (menuElement.style.display = "block");
+            menuElement.style.display = window.screen.availWidth >= BREACKPOINT ? "none" : "block"
         });
 
 };
