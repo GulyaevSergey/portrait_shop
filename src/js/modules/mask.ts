@@ -1,5 +1,5 @@
-const mask = (selector) => {
-    const setCursorPosition = (pos, elem) => {
+const mask = (selector: string) => {
+    const setCursorPosition = (pos: number, elem) => {
         elem.focus();
         if (elem.setSelectionRange) {
             elem.setSelectionRange(pos, pos);
@@ -12,18 +12,21 @@ const mask = (selector) => {
         }
     };
 
-    const createMask = (event) => {
+    const createMask = (event: Event) => {
         const context = event.target;
+        if (!(context instanceof HTMLInputElement) || context.value === undefined) {
+            return;
+        }
         const matrix = "+7 (___) ___ __ __";
         let i = 0;
         let def = matrix.replace(/\D/g, "");
-        let val = context.value.replace(/\D/g, "");
+        let val = context!.value.replace(/\D/g, "");
 
         if (def.length >= val.length) {
             val = def;
         }
 
-        context.value = matrix.replace(/./g, (a) => {
+        context!.value = matrix.replace(/./g, (a) => {
             return /[_\d]/.test(a) && i < val.length
                 ? val.charAt(i++)
                 : i >= val.length
@@ -31,16 +34,17 @@ const mask = (selector) => {
                 : a;
         });
 
-        if (event.type === "blue") {
-            if (context.value.length === 2) {
-                context.value = "";
+        if (event!.type === "blue") {
+            if (context!.value.length === 2) {
+                context!.value = "";
             } else {
-                setCursorPosition(context.value.length, this);
+                setCursorPosition(context!.value.length, this);
+
             }
         }
     };
 
-    const inputs = document.querySelectorAll(selector);
+    const inputs: NodeListOf<HTMLFormElement> = document.querySelectorAll(selector);
 
     inputs.forEach((input) => {
         input.addEventListener("input", createMask);

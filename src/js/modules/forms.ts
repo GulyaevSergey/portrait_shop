@@ -1,13 +1,15 @@
 import { checkNumInputs, postData } from "./index";
 
-const forms = () => {
-    const allForms = document.querySelectorAll("form");
-    const inputs = document.querySelectorAll("input");
-    const upload = document.querySelectorAll('[name="upload"]');
+const forms = (): void => {
+    const allForms: NodeListOf<HTMLFormElement> = document.querySelectorAll("form");
+    const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll("input");
+    const upload: NodeListOf<HTMLInputElement> = document.querySelectorAll('[name="upload"]');
 
     checkNumInputs('input[name="phone"]');
 
-    const messages = {
+    type Status = {loading: string, success: string, failure: string, spinner: string, ok: string, fail: string}
+
+    const messages: Status = { 
         loading: "Загрузка...",
         success: "Спасибо, скоро с вами свяжуться",
         failure: "Что-то пошло не так, попробуйте через 5 минут",
@@ -19,17 +21,18 @@ const forms = () => {
     const clearInputs = () => {
         inputs.forEach((item) => (item.value = ""));
         upload.forEach((item) => {
-            item.previousElementSibling.textContent = "Файл не выбран";
+            item.previousElementSibling! .textContent = "Файл не выбран";
         });
     };
 
     upload.forEach((item) => {
         item.addEventListener("input", () => {
-            let dots;
-            const arr = item.files[0].name.split(".");
+
+            let dots: string;
+            const arr = item.files![0].name.split(".");
             arr[0].length > 6 ? (dots = "...") : (dots = ".");
             const name = arr[0].substring(0, 6) + dots + arr[1];
-            item.previousElementSibling.textContent = name;
+            item.previousElementSibling!.textContent = name;
         });
     });
 
@@ -39,7 +42,7 @@ const forms = () => {
 
             const statusMessage = document.createElement("div");
             statusMessage.classList.add("status");
-            form.parentNode.appendChild(statusMessage);
+            form.parentNode!.appendChild(statusMessage);
 
             form.classList.add("animated", "fadeOutUp");
             setTimeout(() => {
@@ -68,7 +71,6 @@ const forms = () => {
                 jsonObject
             )
                 .then((res) => {
-                    console.log(res);
                     statusImg.setAttribute("src", messages.ok);
                     textMessage.textContent = messages.success;
                 })
@@ -86,8 +88,8 @@ const forms = () => {
                     }, 5000);
                 });
             if (form.getAttribute("data-calc") === "end") {
-                for (let key in state) {
-                    formData.append(key, state[key]);
+                for (let key in form) {
+                    formData.append(key, form[key]);
                 }
             }
         });

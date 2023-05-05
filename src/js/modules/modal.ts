@@ -1,19 +1,19 @@
-const modal = () => {
-    let btnPressed;
+const modal = (): void => {
+    let btnPressed: boolean;
     function bindModal(
-        triggerSelector,
-        modalSelector,
-        closeSelector,
-        destroy = false
-    ) {
-        const triggers = document.querySelectorAll(triggerSelector);
-        const modal = document.querySelector(modalSelector);
-        const close = document.querySelector(closeSelector);
-        const windows = document.querySelectorAll("[data-modal]");
-        const scroll = calcScroll();
+        triggerSelector: string,
+        modalSelector: string,
+        closeSelector: string,
+        destroy: boolean = false
+    ): void {
+        const triggers: NodeListOf<HTMLElement> = document.querySelectorAll(triggerSelector);
+        const modal: HTMLFormElement | null= document.querySelector(modalSelector);
+        const close: HTMLButtonElement | null = document.querySelector(closeSelector);
+        const windows: NodeListOf<HTMLElement> = document.querySelectorAll("[data-modal]");
+        const scroll: number = calcScroll();
 
         const closeModal = () => {
-            modal.style.display = "none";
+            modal!.style.display = "none";
             document.body.style.overflow = "";
             document.body.style.marginRight = `0px`;
         };
@@ -32,22 +32,22 @@ const modal = () => {
                     window.style.display = "none";
                     window.classList.add("animated", "fadeIn");
                 });
-                modal.style.display = "block";
+                modal!.style.display = "block";
                 document.body.style.overflow = "hidden";
                 document.body.style.marginRight = `${scroll}px`;
 
-                close.focus();
+                close!.focus();
             });
         });
 
-        close.addEventListener("click", () => {
+        close!.addEventListener("click", () => {
             windows.forEach((window) => {
                 window.style.display = "none";
             });
             closeModal();
         });
 
-        modal.addEventListener("click", (e) => {
+        modal!.addEventListener("click", (e) => {
             if (e.target === modal) {
                 windows.forEach((window) => {
                     window.style.display = "none";
@@ -66,9 +66,9 @@ const modal = () => {
         });
     }
 
-    const showModalByTime = (selector, time) => {
+    const showModalByTime = (selector: string, time: number) => {
         setTimeout(function () {
-            let display;
+            let display: string | undefined;
 
             document.querySelectorAll("[data-modal]").forEach((item) => {
                 if (getComputedStyle(item).display !== "none") {
@@ -76,7 +76,8 @@ const modal = () => {
                 }
             });
             if (!display) {
-                document.querySelector(selector).style.display = "block";
+                const modal = document.querySelector(selector) as HTMLElement
+                modal.style.display = "block";
                 document.body.style.overflow = "hidden";
                 const scroll = calcScroll();
                 document.body.style.marginRight = `${scroll}px`;
@@ -97,14 +98,15 @@ const modal = () => {
         return scrollWidth;
     };
 
-    const openByScroll = (selector) => {
+    const openByScroll = (selector: string) => {
         window.addEventListener("scroll", () => {
             if (
                 !btnPressed &&
                 window.pageYOffset + document.documentElement.clientHeight >=
                     document.documentElement.scrollHeight
             ) {
-                document.querySelector(selector).click();
+                const select = document.querySelector(selector) as HTMLElement
+                select.click();
             }
         });
     };
