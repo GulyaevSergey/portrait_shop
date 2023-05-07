@@ -1,9 +1,9 @@
-const sliders = (slides, dir, prev, next) => {
+const sliders = (slides: string, dir: string, prev: string, next: string) => {
     let slideIndex = 1;
-    const items = document.querySelectorAll(slides);
-    let paused = false;
+    const items: NodeListOf<HTMLElement> = document.querySelectorAll(slides);
+    let paused: number
 
-    const showSlides = (n) => {
+    const showSlides = (n: number) => {
         if (n > items.length) {
             slideIndex = 1;
         }
@@ -21,19 +21,26 @@ const sliders = (slides, dir, prev, next) => {
     };
     showSlides(slideIndex);
 
-    const changeSlides = (n) => {
+    const changeSlides = (n: number) => {
         showSlides((slideIndex += n));
     };
 
     try {
-        const prevBtn = document.querySelector(prev);
-        const nextBtn = document.querySelector(next);
+        const prevBtn: HTMLButtonElement | null = document.querySelector(prev);
+        const nextBtn: HTMLButtonElement | null = document.querySelector(next);
+
+        if(!prevBtn){
+            return
+        }
         prevBtn.addEventListener("click", () => {
             changeSlides(-1);
             items[slideIndex - 1].classList.remove("slideInLeft");
             items[slideIndex - 1].classList.add("slideInRight");
         });
 
+        if (!nextBtn) {
+            return
+        }
         nextBtn.addEventListener("click", () => {
             changeSlides(1);
             items[slideIndex - 1].classList.remove("slideInRight");
@@ -58,10 +65,16 @@ const sliders = (slides, dir, prev, next) => {
 
     activateAnimation();
 
-    items[0].parentNode.addEventListener("mouseenter", () => {
+    const eventToParent = items[0].parentNode
+
+    if(!eventToParent){
+        return
+    }
+
+    eventToParent.addEventListener("mouseenter", () => {
         clearInterval(paused);
     });
-    items[0].parentNode.addEventListener("mouseleave", () => {
+    eventToParent.addEventListener("mouseleave", () => {
         activateAnimation();
     });
 };
