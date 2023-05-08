@@ -30,12 +30,15 @@ const forms = (): void => {
 
     upload.forEach((item) => {
         item.addEventListener("input", () => {
+            if(!item.files || !item.previousElementSibling){
+                return
+            }
 
             let dots: string;
-            const arr = item.files![0].name.split(".");
+            const arr = item.files[0].name.split(".");
             arr[0].length > 6 ? (dots = "...") : (dots = ".");
             const name = arr[0].substring(0, 6) + dots + arr[1];
-            item.previousElementSibling!.textContent = name;
+            item.previousElementSibling.textContent = name;
         });
     });
 
@@ -45,7 +48,14 @@ const forms = (): void => {
 
             const statusMessage = document.createElement("div");
             statusMessage.classList.add("status");
-            form.parentNode!.appendChild(statusMessage);
+
+            const parentForm = form.parentNode
+
+            if(!parentForm){
+                return
+            }
+
+            parentForm.appendChild(statusMessage);
 
             form.classList.add("animated", "fadeOutUp");
             setTimeout(() => {

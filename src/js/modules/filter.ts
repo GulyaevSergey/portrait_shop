@@ -1,19 +1,25 @@
 export const filter = () => {
     const menu: HTMLElement | null = document.querySelector(".portfolio-menu");
-    const items: NodeListOf<HTMLElement> = menu!.querySelectorAll("li");
-    const btnAll: HTMLElement | null = menu!.querySelector(".all");
-    const btnLovers: HTMLElement | null = menu!.querySelector(".lovers");
-    const btnChef: HTMLElement | null = menu!.querySelector(".chef");
-    const btnGirl: HTMLElement | null = menu!.querySelector(".girl");
-    const btnGuy: HTMLElement | null = menu!.querySelector(".guy");
-    const btnGrandmother: HTMLElement | null = menu!.querySelector(".grandmother");
-    const btnGranddad: HTMLElement | null = menu!.querySelector(".granddad");
+    if (!menu){
+        return
+    }
+    const items: NodeListOf<HTMLElement> = menu.querySelectorAll("li");
+    const btnAll: HTMLElement | null = menu.querySelector(".all");
+    const btnLovers: HTMLElement | null = menu.querySelector(".lovers");
+    const btnChef: HTMLElement | null = menu.querySelector(".chef");
+    const btnGirl: HTMLElement | null = menu.querySelector(".girl");
+    const btnGuy: HTMLElement | null = menu.querySelector(".guy");
+    const btnGrandmother: HTMLElement | null = menu.querySelector(".grandmother");
+    const btnGranddad: HTMLElement | null = menu.querySelector(".granddad");
     const wrapper: HTMLElement | null = document.querySelector(".portfolio-wrapper");
-    const markAll: NodeListOf<HTMLElement> = wrapper!.querySelectorAll(".all");
-    const markGirl: NodeListOf<HTMLElement>= wrapper!.querySelectorAll(".girl");
-    const markLovers: NodeListOf<HTMLElement> = wrapper!.querySelectorAll(".lovers");
-    const markChef: NodeListOf<HTMLElement> = wrapper!.querySelectorAll(".chef");
-    const markGuy: NodeListOf<HTMLElement> = wrapper!.querySelectorAll(".guy");
+    if (!wrapper){
+        return
+    }
+    const markAll: NodeListOf<HTMLElement> = wrapper.querySelectorAll(".all");
+    const markGirl: NodeListOf<HTMLElement>= wrapper.querySelectorAll(".girl");
+    const markLovers: NodeListOf<HTMLElement> = wrapper.querySelectorAll(".lovers");
+    const markChef: NodeListOf<HTMLElement> = wrapper.querySelectorAll(".chef");
+    const markGuy: NodeListOf<HTMLElement> = wrapper.querySelectorAll(".guy");
     const no: HTMLElement | null = document.querySelector(".portfolio-no");
 
     const categoriesFilter = [
@@ -50,16 +56,19 @@ export const filter = () => {
         }
     };
 
-    categoriesFilter.forEach(({ elem, type}) =>
-        elem!.addEventListener("click", () => {
+    categoriesFilter.forEach(({ elem, type}) => {
+        if(!elem){
+            return
+        }
+        elem.addEventListener("click", () => {
             if (typeof type !== "string"){
                 typeFilter(type)
             }
 
         })
-    );
+    });
 
-    menu!.addEventListener("click", (e) => {
+    menu.addEventListener("click", (e) => {
         const target = e.target as HTMLElement;
         if (target && target.tagName === "LI") {
             items.forEach((item) => {
