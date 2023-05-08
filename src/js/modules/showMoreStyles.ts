@@ -41,11 +41,10 @@ export const showMoreStyles = (trigger: string, wrapper: string) => {
             });
         };
 
-        const target = e.target as HTMLElement
-        if(!target){
-            return
+
+        if (e.target instanceof HTMLElement) {
+            e.target.remove();
         }
-        target.remove();
     });
 
     // cards.forEach((card) => {

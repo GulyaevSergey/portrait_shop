@@ -76,11 +76,14 @@ const modal = (): void => {
                 }
             });
             if (!display) {
-                const modal = document.querySelector(selector) as HTMLElement
-                modal.style.display = "block";
-                document.body.style.overflow = "hidden";
-                const scroll = calcScroll();
-                document.body.style.marginRight = `${scroll}px`;
+                
+                const modal = document.querySelector(selector)
+                if(modal instanceof HTMLElement) {
+                    modal.style.display = "block";
+                    document.body.style.overflow = "hidden";
+                    const scroll = calcScroll();
+                    document.body.style.marginRight = `${scroll}px`;
+                }
             }
         }, time);
     };
