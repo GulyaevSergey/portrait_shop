@@ -1,14 +1,19 @@
 import { getResourse } from "./index";
 
-export const showMoreStyles = (trigger, wrapper) => {
+export const showMoreStyles = (trigger: string, wrapper: string) => {
     const btn = document.querySelector(trigger);
 
-    btn.addEventListener("click", (e) => {
+    btn!.addEventListener("click", (e) => {
         getResourse("../../../src/assets/db.json")
             .then((res) => createCards(res.styles))
             .catch((error) => console.log(error));
 
-        const createCards = (answers) => {
+        type Answer = {
+            src: string,
+            title: string,
+            link: string
+        }
+        const createCards = (answers: Answer[]) => {
             answers.forEach(({ src, title, link }) => {
                 const card = document.createElement("div");
                 card.classList.add(
@@ -26,10 +31,20 @@ export const showMoreStyles = (trigger, wrapper) => {
                         <a href=${link}>Подробнее</a>
                     </div>
                 `;
-                document.querySelector(wrapper).appendChild(card);
+
+                const wrap = document.querySelector(wrapper)
+
+                if(!wrap){
+                    return 
+                }
+                wrap.appendChild(card);
             });
         };
-        e.target.remove();
+
+
+        if (e.target instanceof HTMLElement) {
+            e.target.remove();
+        }
     });
 
     // cards.forEach((card) => {

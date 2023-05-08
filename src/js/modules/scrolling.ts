@@ -1,7 +1,10 @@
-export const scrolling = (upSelector) => {
-    const btnTop = document.querySelector(upSelector);
+export const scrolling = (upSelector: string): void => {
+    const btnTop: HTMLElement | null = document.querySelector(upSelector);
 
     window.addEventListener("scroll", () => {
+        if(!btnTop){
+            return
+        }
         if (document.documentElement.scrollTop > 1650) {
             btnTop.classList.add("animated", "fadeIn");
             btnTop.classList.remove("fadeOut");
@@ -24,9 +27,9 @@ export const scrolling = (upSelector) => {
             const toBlock = document
                 .querySelector(hash)
                 .getBoundingClientRect().top;
-            let start = null;
+            let start: number | null = null;
 
-            const step = (time) => {
+            const step = (time: number) => {
                 if (start === null) {
                     start = time;
                 }
