@@ -12,36 +12,42 @@ const mask = (selector: string) => {
         }
     };
 
-    const createMask = (event: Event) => {
-        const context = event.target;
-        if (!(context instanceof HTMLInputElement) || context.value === undefined) {
+    const createMask = (e: Event) => {
+
+        const context: EventTarget | null = e.target;
+        if (!context) {
             return;
         }
-        const matrix = "+7 (___) ___ __ __";
-        let i = 0;
-        let def = matrix.replace(/\D/g, "");
-        let val = context!.value.replace(/\D/g, "");
 
-        if (def.length >= val.length) {
-            val = def;
-        }
-
-        context!.value = matrix.replace(/./g, (a) => {
-            return /[_\d]/.test(a) && i < val.length
-                ? val.charAt(i++)
-                : i >= val.length
-                ? ""
-                : a;
-        });
-
-        if (event!.type === "blue") {
-            if (context!.value.length === 2) {
-                context!.value = "";
-            } else {
-                setCursorPosition(context!.value.length, this);
-
+        if (context instanceof HTMLInputElement){
+            const matrix = "+7 (___) ___ __ __";
+            let i = 0;
+            let def = matrix.replace(/\D/g, "");
+            let val = context.value.replace(/\D/g, "");
+    
+            if (def.length >= val.length) {
+                val = def;
+            }
+    
+            context.value = matrix.replace(/./g, (a) => {
+                return /[_\d]/.test(a) && i < val.length
+                    ? val.charAt(i++)
+                    : i >= val.length
+                    ? ""
+                    : a;
+            });
+    
+            if (e.type === "blue") {
+                if (context.value.length === 2) {
+                    context.value = "";
+                } else {
+                    setCursorPosition(context.value.length, this);
+    
+                }
             }
         }
+
+        
     };
 
     const inputs: NodeListOf<HTMLFormElement> = document.querySelectorAll(selector);

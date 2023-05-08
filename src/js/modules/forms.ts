@@ -21,7 +21,10 @@ const forms = (): void => {
     const clearInputs = () => {
         inputs.forEach((item) => (item.value = ""));
         upload.forEach((item) => {
-            item.previousElementSibling! .textContent = "Файл не выбран";
+            if (!item.previousElementSibling){
+                return
+            }
+            item.previousElementSibling .textContent = "Файл не выбран";
         });
     };
 
